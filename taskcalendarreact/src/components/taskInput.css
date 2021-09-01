@@ -1,0 +1,9 @@
+.iconImportant{
+    color: #30BCED;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: color .125s ease-in-out;
+}
+.iconImportant:hover{
+    color: #0dd4ee;
+}
