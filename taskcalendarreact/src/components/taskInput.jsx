@@ -3,23 +3,39 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
 function TaskInput(props) {
-  const [imp, setImp] = useState(false);
+  // State Variables
+  const [important, setImportant] = useState(false);
+  const [title, setTitle] = useState(``);
 
+  // logic (fns)
   const changeImp = () => {
-    let star = !imp;
-    setImp(star);
+    let star = !important;
+    setImportant(star);
     props.onChange(star);
     console.log(`change to ${star}`);
-    // imp ? setImp(false) : setImp(true);
   };
 
+  const handleChange = (event) => {
+    setTitle(event.target.value);
+    console.log(title);
+  };
+
+  // Effects
+
+  // return
   return (
     <div className="form px-3 py-3">
       <div className="mb-3">
         <label htmlFor="titleInput" className="form-label">
           Title
         </label>
-        <input id="titleInput" type="text" className="form-control" />
+        <input
+          value={title}
+          onChange={handleChange}
+          id="titleInput"
+          type="text"
+          className="form-control"
+        />
       </div>
       <div className="icons mb-3">
         <label htmlFor="iconImportant" className="form-label">
@@ -30,9 +46,8 @@ function TaskInput(props) {
         <FontAwesomeIcon
           onClick={changeImp}
           className="iconImportant"
-          icon={[imp ? "fas" : "far", "star"]}
+          icon={[important ? "fas" : "far", "star"]}
         />
-        {/* <FontAwesomeIcon className="iconImportant" icon={["fas", "star"]} /> */}
       </div>
       <div className="mb-3">
         <label htmlFor="dueDateInput" className="form-label">
