@@ -5,7 +5,15 @@ import React, { useState } from "react";
 function TaskInput(props) {
   // State Variables
   const [important, setImportant] = useState(false);
-  const [title, setTitle] = useState(``);
+  const [task, setTask] = useState({
+    title: ``,
+    dueDate: ``,
+    location: ``,
+    priority: `Low`,
+    color: "#000000",
+    description: ``,
+  });
+  const [allTasks, setAllTasks] = useState([]);
 
   // logic (fns)
   const changeImp = () => {
@@ -15,9 +23,22 @@ function TaskInput(props) {
     console.log(`change to ${star}`);
   };
 
-  const handleChange = (event) => {
-    setTitle(event.target.value);
-    console.log(title);
+  const handleChangeInput = (event) => {
+    let temp = { ...task };
+    let value = event.target.value;
+    let name = event.target.name;
+    temp[name] = value;
+    setTask(temp);
+  };
+
+  const saveTask = () => {
+    let temp = task;
+    let taskArray = allTasks;
+    temp.important = important;
+    taskArray.push(temp);
+    setAllTasks(taskArray);
+    props.onSubmit([...taskArray]);
+    console.log(taskArray);
   };
 
   // Effects
@@ -30,8 +51,9 @@ function TaskInput(props) {
           Title
         </label>
         <input
-          value={title}
-          onChange={handleChange}
+          name="title"
+          value={task.title}
+          onChange={handleChangeInput}
           id="titleInput"
           type="text"
           className="form-control"
@@ -54,6 +76,9 @@ function TaskInput(props) {
           Due Date
         </label>
         <input
+          name="dueDate"
+          value={task.dueDate}
+          onChange={handleChangeInput}
           id="dueDateInput"
           type="datetime-local"
           className="form-control"
@@ -63,13 +88,26 @@ function TaskInput(props) {
         <label htmlFor="locationInput" className="form-label">
           Location
         </label>
-        <input id="locationInput" type="text" className="form-control" />
+        <input
+          name="location"
+          value={task.location}
+          onChange={handleChangeInput}
+          id="locationInput"
+          type="text"
+          className="form-control"
+        />
       </div>
       <div className="mb-3">
         <label htmlFor="priorityInput" className="form-label">
           Priority
         </label>
-        <select name="priorityInput" id="priorityInput" className="form-select">
+        <select
+          name="priority"
+          value={task.priority}
+          onChange={handleChangeInput}
+          id="priorityInput"
+          className="form-select"
+        >
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
@@ -80,24 +118,32 @@ function TaskInput(props) {
           Color
         </label>
         <input
+          name="color"
+          value={task.color}
+          onChange={handleChangeInput}
           id="colorInput"
           type="color"
           className="form-control form-control-color"
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="contactInput" className="form-label">
-          Contact
-        </label>
-        <input id="contactInput" type="text" className="form-control" />
-      </div>
-      <div className="mb-3">
         <label htmlFor="descriptionInput" className="form-label">
           Description
         </label>
-        <textarea id="descriptionInput" className="form-control"></textarea>
+        <textarea
+          name="description"
+          value={task.description}
+          onChange={handleChangeInput}
+          id="descriptionInput"
+          className="form-control"
+        ></textarea>
       </div>
-      <button className="btn btn-info" id="btnSave">
+      <button
+        type="submit"
+        onClick={saveTask}
+        className="btn btn-info"
+        id="btnSave"
+      >
         Save Task
       </button>
     </div>

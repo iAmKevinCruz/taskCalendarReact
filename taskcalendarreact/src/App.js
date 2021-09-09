@@ -10,18 +10,31 @@ import React, { useState } from "react";
 library.add(fas, far);
 
 function App() {
+  // state variables
   const [important, setImportant] = useState(false);
+  const [allTasks, setAllTasks] = useState([]);
 
+  // logic
   const handleImportant = (imp) => {
     console.log(`Change Importance to ${imp}`);
     setImportant(imp);
   };
 
-  console.log(important);
+  const handleTaskSubmit = (tasks) => {
+    // tasks
+    console.log(`tasks recieved: ${tasks}`);
+    setAllTasks(tasks);
+  };
 
+  // effects
+
+  // return
   return (
     <div className="">
-      <TaskInput onChange={handleImportant}></TaskInput>
+      <TaskInput
+        onSubmit={handleTaskSubmit}
+        onChange={handleImportant}
+      ></TaskInput>
     </div>
   );
 }
