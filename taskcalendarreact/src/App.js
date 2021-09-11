@@ -26,23 +26,20 @@ function App() {
     console.log(`tasks recieved: ${tasks}`);
     setAllTasks(tasks);
     console.log(allTasks);
-
-    return;
   };
 
   // effects
   useEffect(() => {
     console.log(`The App Tasks are: ${allTasks}`);
-    document.title = `test ${important}`;
-  });
+  }, [allTasks]);
 
   // return
   return (
     <div className="container-fluid">
       <div className="task-display">
         {/* <TaskDisplay /> */}
-        {allTasks.map((task, index) => (
-          <TaskDisplay key={index} data={task} />
+        {allTasks.map((task, idx) => (
+          <TaskDisplay key={idx} data={task} />
         ))}
       </div>
       <div className="task-inputs">

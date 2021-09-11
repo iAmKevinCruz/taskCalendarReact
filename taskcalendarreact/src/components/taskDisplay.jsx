@@ -8,13 +8,13 @@ const TaskDisplay = (props) => {
     <div
       id=""
       className="currentTask mb-3 py-1 px-1"
-      //   style="border: 2px solid ${task.color};"
+      style={{ border: `2px solid ${props.data.color}` }}
     >
       <div className="left">
         <div className="d-flex justify-content-between">
           <div className="d-flex">
             {/* ${impCheck(task)} */}
-            <h6 onClick={() => console.log(`test data ` + data.title)}>
+            <h6 onClick={() => console.log(`test data ` + data.color)}>
               {props.data.title}
             </h6>
           </div>
