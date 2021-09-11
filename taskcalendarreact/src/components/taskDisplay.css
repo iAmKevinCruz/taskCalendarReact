@@ -1,0 +1,27 @@
+.currentTask{
+    display: flex;
+    align-items: center;
+}
+.currentTask .taskStar{
+    color: var(--blue);
+    margin-right: 3px;
+}
+.currentTask .dueDate{
+    color: var(--orange);
+}
+.currentTask .divider{
+    margin: 4px 0;
+}
+.currentTask .secondaryInfo{
+    font-size: .8rem;
+    /* color:  */
+}
+.currentTask .red{
+    color: red;
+}
+.currentTask .left{
+    flex: 9;
+}
+.currentTask .btnDone{
+    height: 45px;
+}

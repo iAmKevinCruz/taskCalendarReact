@@ -5,7 +5,8 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import TaskInput from "./components/taskInput";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import TaskDisplay from "./components/taskDisplay";
 
 library.add(fas, far);
 
@@ -21,20 +22,35 @@ function App() {
   };
 
   const handleTaskSubmit = (tasks) => {
-    // tasks
+    // test
     console.log(`tasks recieved: ${tasks}`);
     setAllTasks(tasks);
+    console.log(allTasks);
+
+    return;
   };
 
   // effects
+  useEffect(() => {
+    console.log(`The App Tasks are: ${allTasks}`);
+    document.title = `test ${important}`;
+  });
 
   // return
   return (
-    <div className="">
-      <TaskInput
-        onSubmit={handleTaskSubmit}
-        onChange={handleImportant}
-      ></TaskInput>
+    <div className="container-fluid">
+      <div className="task-display">
+        {/* <TaskDisplay /> */}
+        {allTasks.map((task, index) => (
+          <TaskDisplay key={index} data={task} />
+        ))}
+      </div>
+      <div className="task-inputs">
+        <TaskInput
+          onSubmit={handleTaskSubmit}
+          onChange={handleImportant}
+        ></TaskInput>
+      </div>
     </div>
   );
 }

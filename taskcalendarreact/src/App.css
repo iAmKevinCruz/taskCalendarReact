@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.container-fluid{
+  display: flex;
+}
+.container-fluid .task-display{
+  flex: 6;
+}
+.container-fluid .task-inputs{
+  flex: 4;
+}

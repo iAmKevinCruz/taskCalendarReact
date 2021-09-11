@@ -37,7 +37,7 @@ function TaskInput(props) {
     temp.important = important;
     taskArray.push(temp);
     setAllTasks(taskArray);
-    props.onSubmit([...taskArray]);
+    props.onSubmit(allTasks);
     console.log(taskArray);
   };
 
